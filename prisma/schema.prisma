@@ -20,7 +20,9 @@ model cliente{
   nombre String
   Ruc String
   correo String @unique
+  password String 
   telefono String
+  existe Boolean? @default(true)
   Facturas factura[]
 }
 

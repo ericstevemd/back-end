@@ -122,7 +122,9 @@ exports.Prisma.ClienteScalarFieldEnum = {
   nombre: 'nombre',
   Ruc: 'Ruc',
   correo: 'correo',
-  telefono: 'telefono'
+  password: 'password',
+  telefono: 'telefono',
+  existe: 'existe'
 };
 
 exports.Prisma.ProductoScalarFieldEnum = {
@@ -156,6 +158,11 @@ exports.Prisma.SortOrder = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 

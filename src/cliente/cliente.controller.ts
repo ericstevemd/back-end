@@ -31,4 +31,9 @@ export class ClienteController {
   remove(@Param('id') id: string) {
     return this.clienteService.remove(+id);
   }
+
+  @Post('login')
+  login(@Body() body: { correo: string; password: string }) {
+    return this.clienteService.login(body.correo, body.password);
+  }
 }

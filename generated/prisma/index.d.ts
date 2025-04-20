@@ -1259,7 +1259,9 @@ export namespace Prisma {
     nombre: string | null
     Ruc: string | null
     correo: string | null
+    password: string | null
     telefono: string | null
+    existe: boolean | null
   }
 
   export type ClienteMaxAggregateOutputType = {
@@ -1267,7 +1269,9 @@ export namespace Prisma {
     nombre: string | null
     Ruc: string | null
     correo: string | null
+    password: string | null
     telefono: string | null
+    existe: boolean | null
   }
 
   export type ClienteCountAggregateOutputType = {
@@ -1275,7 +1279,9 @@ export namespace Prisma {
     nombre: number
     Ruc: number
     correo: number
+    password: number
     telefono: number
+    existe: number
     _all: number
   }
 
@@ -1293,7 +1299,9 @@ export namespace Prisma {
     nombre?: true
     Ruc?: true
     correo?: true
+    password?: true
     telefono?: true
+    existe?: true
   }
 
   export type ClienteMaxAggregateInputType = {
@@ -1301,7 +1309,9 @@ export namespace Prisma {
     nombre?: true
     Ruc?: true
     correo?: true
+    password?: true
     telefono?: true
+    existe?: true
   }
 
   export type ClienteCountAggregateInputType = {
@@ -1309,7 +1319,9 @@ export namespace Prisma {
     nombre?: true
     Ruc?: true
     correo?: true
+    password?: true
     telefono?: true
+    existe?: true
     _all?: true
   }
 
@@ -1404,7 +1416,9 @@ export namespace Prisma {
     nombre: string
     Ruc: string
     correo: string
+    password: string
     telefono: string
+    existe: boolean | null
     _count: ClienteCountAggregateOutputType | null
     _avg: ClienteAvgAggregateOutputType | null
     _sum: ClienteSumAggregateOutputType | null
@@ -1431,7 +1445,9 @@ export namespace Prisma {
     nombre?: boolean
     Ruc?: boolean
     correo?: boolean
+    password?: boolean
     telefono?: boolean
+    existe?: boolean
     Facturas?: boolean | cliente$FacturasArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["cliente"]>
@@ -1441,7 +1457,9 @@ export namespace Prisma {
     nombre?: boolean
     Ruc?: boolean
     correo?: boolean
+    password?: boolean
     telefono?: boolean
+    existe?: boolean
   }, ExtArgs["result"]["cliente"]>
 
   export type clienteSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1449,7 +1467,9 @@ export namespace Prisma {
     nombre?: boolean
     Ruc?: boolean
     correo?: boolean
+    password?: boolean
     telefono?: boolean
+    existe?: boolean
   }, ExtArgs["result"]["cliente"]>
 
   export type clienteSelectScalar = {
@@ -1457,10 +1477,12 @@ export namespace Prisma {
     nombre?: boolean
     Ruc?: boolean
     correo?: boolean
+    password?: boolean
     telefono?: boolean
+    existe?: boolean
   }
 
-  export type clienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "Ruc" | "correo" | "telefono", ExtArgs["result"]["cliente"]>
+  export type clienteOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "Ruc" | "correo" | "password" | "telefono" | "existe", ExtArgs["result"]["cliente"]>
   export type clienteInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     Facturas?: boolean | cliente$FacturasArgs<ExtArgs>
     _count?: boolean | ClienteCountOutputTypeDefaultArgs<ExtArgs>
@@ -1478,7 +1500,9 @@ export namespace Prisma {
       nombre: string
       Ruc: string
       correo: string
+      password: string
       telefono: string
+      existe: boolean | null
     }, ExtArgs["result"]["cliente"]>
     composites: {}
   }
@@ -1907,7 +1931,9 @@ export namespace Prisma {
     readonly nombre: FieldRef<"cliente", 'String'>
     readonly Ruc: FieldRef<"cliente", 'String'>
     readonly correo: FieldRef<"cliente", 'String'>
+    readonly password: FieldRef<"cliente", 'String'>
     readonly telefono: FieldRef<"cliente", 'String'>
+    readonly existe: FieldRef<"cliente", 'Boolean'>
   }
     
 
@@ -5706,7 +5732,9 @@ export namespace Prisma {
     nombre: 'nombre',
     Ruc: 'Ruc',
     correo: 'correo',
-    telefono: 'telefono'
+    password: 'password',
+    telefono: 'telefono',
+    existe: 'existe'
   };
 
   export type ClienteScalarFieldEnum = (typeof ClienteScalarFieldEnum)[keyof typeof ClienteScalarFieldEnum]
@@ -5760,6 +5788,14 @@ export namespace Prisma {
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
   /**
    * Field references
    */
@@ -5790,6 +5826,13 @@ export namespace Prisma {
    * Reference to a field of type 'String[]'
    */
   export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -5832,7 +5875,9 @@ export namespace Prisma {
     nombre?: StringFilter<"cliente"> | string
     Ruc?: StringFilter<"cliente"> | string
     correo?: StringFilter<"cliente"> | string
+    password?: StringFilter<"cliente"> | string
     telefono?: StringFilter<"cliente"> | string
+    existe?: BoolNullableFilter<"cliente"> | boolean | null
     Facturas?: FacturaListRelationFilter
   }
 
@@ -5841,7 +5886,9 @@ export namespace Prisma {
     nombre?: SortOrder
     Ruc?: SortOrder
     correo?: SortOrder
+    password?: SortOrder
     telefono?: SortOrder
+    existe?: SortOrderInput | SortOrder
     Facturas?: facturaOrderByRelationAggregateInput
   }
 
@@ -5853,7 +5900,9 @@ export namespace Prisma {
     NOT?: clienteWhereInput | clienteWhereInput[]
     nombre?: StringFilter<"cliente"> | string
     Ruc?: StringFilter<"cliente"> | string
+    password?: StringFilter<"cliente"> | string
     telefono?: StringFilter<"cliente"> | string
+    existe?: BoolNullableFilter<"cliente"> | boolean | null
     Facturas?: FacturaListRelationFilter
   }, "id" | "correo">
 
@@ -5862,7 +5911,9 @@ export namespace Prisma {
     nombre?: SortOrder
     Ruc?: SortOrder
     correo?: SortOrder
+    password?: SortOrder
     telefono?: SortOrder
+    existe?: SortOrderInput | SortOrder
     _count?: clienteCountOrderByAggregateInput
     _avg?: clienteAvgOrderByAggregateInput
     _max?: clienteMaxOrderByAggregateInput
@@ -5878,7 +5929,9 @@ export namespace Prisma {
     nombre?: StringWithAggregatesFilter<"cliente"> | string
     Ruc?: StringWithAggregatesFilter<"cliente"> | string
     correo?: StringWithAggregatesFilter<"cliente"> | string
+    password?: StringWithAggregatesFilter<"cliente"> | string
     telefono?: StringWithAggregatesFilter<"cliente"> | string
+    existe?: BoolNullableWithAggregatesFilter<"cliente"> | boolean | null
   }
 
   export type productoWhereInput = {
@@ -6057,7 +6110,9 @@ export namespace Prisma {
     nombre: string
     Ruc: string
     correo: string
+    password: string
     telefono: string
+    existe?: boolean | null
     Facturas?: facturaCreateNestedManyWithoutClienteInput
   }
 
@@ -6066,7 +6121,9 @@ export namespace Prisma {
     nombre: string
     Ruc: string
     correo: string
+    password: string
     telefono: string
+    existe?: boolean | null
     Facturas?: facturaUncheckedCreateNestedManyWithoutClienteInput
   }
 
@@ -6074,7 +6131,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     Ruc?: StringFieldUpdateOperationsInput | string
     correo?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
+    existe?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Facturas?: facturaUpdateManyWithoutClienteNestedInput
   }
 
@@ -6083,7 +6142,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     Ruc?: StringFieldUpdateOperationsInput | string
     correo?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
+    existe?: NullableBoolFieldUpdateOperationsInput | boolean | null
     Facturas?: facturaUncheckedUpdateManyWithoutClienteNestedInput
   }
 
@@ -6092,14 +6153,18 @@ export namespace Prisma {
     nombre: string
     Ruc: string
     correo: string
+    password: string
     telefono: string
+    existe?: boolean | null
   }
 
   export type clienteUpdateManyMutationInput = {
     nombre?: StringFieldUpdateOperationsInput | string
     Ruc?: StringFieldUpdateOperationsInput | string
     correo?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
+    existe?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type clienteUncheckedUpdateManyInput = {
@@ -6107,7 +6172,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     Ruc?: StringFieldUpdateOperationsInput | string
     correo?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
+    existe?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type productoCreateInput = {
@@ -6293,10 +6360,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type BoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type FacturaListRelationFilter = {
     every?: facturaWhereInput
     some?: facturaWhereInput
     none?: facturaWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type facturaOrderByRelationAggregateInput = {
@@ -6308,7 +6385,9 @@ export namespace Prisma {
     nombre?: SortOrder
     Ruc?: SortOrder
     correo?: SortOrder
+    password?: SortOrder
     telefono?: SortOrder
+    existe?: SortOrder
   }
 
   export type clienteAvgOrderByAggregateInput = {
@@ -6320,7 +6399,9 @@ export namespace Prisma {
     nombre?: SortOrder
     Ruc?: SortOrder
     correo?: SortOrder
+    password?: SortOrder
     telefono?: SortOrder
+    existe?: SortOrder
   }
 
   export type clienteMinOrderByAggregateInput = {
@@ -6328,7 +6409,9 @@ export namespace Prisma {
     nombre?: SortOrder
     Ruc?: SortOrder
     correo?: SortOrder
+    password?: SortOrder
     telefono?: SortOrder
+    existe?: SortOrder
   }
 
   export type clienteSumOrderByAggregateInput = {
@@ -6367,6 +6450,14 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type BoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
   }
 
   export type FloatFilter<$PrismaModel = never> = {
@@ -6575,6 +6666,10 @@ export namespace Prisma {
     set?: string
   }
 
+  export type NullableBoolFieldUpdateOperationsInput = {
+    set?: boolean | null
+  }
+
   export type facturaUpdateManyWithoutClienteNestedInput = {
     create?: XOR<facturaCreateWithoutClienteInput, facturaUncheckedCreateWithoutClienteInput> | facturaCreateWithoutClienteInput[] | facturaUncheckedCreateWithoutClienteInput[]
     connectOrCreate?: facturaCreateOrConnectWithoutClienteInput | facturaCreateOrConnectWithoutClienteInput[]
@@ -6774,6 +6869,11 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedBoolNullableFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableFilter<$PrismaModel> | boolean | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -6816,6 +6916,25 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedBoolNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel> | null
+    not?: NestedBoolNullableWithAggregatesFilter<$PrismaModel> | boolean | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedBoolNullableFilter<$PrismaModel>
+    _max?: NestedBoolNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
@@ -6965,7 +7084,9 @@ export namespace Prisma {
     nombre: string
     Ruc: string
     correo: string
+    password: string
     telefono: string
+    existe?: boolean | null
   }
 
   export type clienteUncheckedCreateWithoutFacturasInput = {
@@ -6973,7 +7094,9 @@ export namespace Prisma {
     nombre: string
     Ruc: string
     correo: string
+    password: string
     telefono: string
+    existe?: boolean | null
   }
 
   export type clienteCreateOrConnectWithoutFacturasInput = {
@@ -7021,7 +7144,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     Ruc?: StringFieldUpdateOperationsInput | string
     correo?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
+    existe?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type clienteUncheckedUpdateWithoutFacturasInput = {
@@ -7029,7 +7154,9 @@ export namespace Prisma {
     nombre?: StringFieldUpdateOperationsInput | string
     Ruc?: StringFieldUpdateOperationsInput | string
     correo?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
     telefono?: StringFieldUpdateOperationsInput | string
+    existe?: NullableBoolFieldUpdateOperationsInput | boolean | null
   }
 
   export type detalleFacturaUpsertWithWhereUniqueWithoutFacturaInput = {

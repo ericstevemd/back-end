@@ -1,8 +1,8 @@
-import { BadRequestException, Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException, OnModuleInit, UnauthorizedException } from '@nestjs/common';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { PrismaClient } from 'generated/prisma';
-
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class ClienteService extends PrismaClient implements OnModuleInit {
@@ -10,7 +10,19 @@ export class ClienteService extends PrismaClient implements OnModuleInit {
     await this.$connect();
   }
   create(createClienteDto: CreateClienteDto) {
-    return this.cliente.create({data:createClienteDto});
+    if (!createClienteDto.password) {
+      throw new BadRequestException('La contraseña es obligatoria.');
+    }
+  
+    const hashedPassword = bcrypt.hashSync(createClienteDto.password, 10);
+  
+    return this.cliente.create({
+      data: {
+        ...createClienteDto,
+        password: hashedPassword,
+        existe: true,
+      },
+    });
   }
 
   findAll() {
@@ -55,4 +67,32 @@ export class ClienteService extends PrismaClient implements OnModuleInit {
       where: { id },
     });
   }
+
+  async login(correo: string, password: string) {
+    if (!correo || !password) {
+      throw new BadRequestException('Correo y contraseña son requeridos.');
+    }
+  
+    const cliente = await this.cliente.findUnique({ where: { correo } });
+  
+    if (!cliente || !cliente.password) {
+      throw new UnauthorizedException('Correo o contraseña incorrectos.');
+    }
+  
+    const passwordValid = bcrypt.compareSync(password, cliente.password);
+    if (!passwordValid) {
+      throw new UnauthorizedException('Correo o contraseña incorrectos.');
+    }
+  
+    return {
+      mensaje: 'Login exitoso',
+      cliente: {
+        id: cliente.id,
+        nombre: cliente.nombre,
+        correo: cliente.correo,
+      },
+    };
+  }
+  
+
 }
