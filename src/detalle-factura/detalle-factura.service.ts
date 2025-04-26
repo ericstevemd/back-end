@@ -32,7 +32,7 @@ export class DetalleFacturaService extends PrismaClient implements OnModuleInit 
   }
 
   async update(id: number, updateDetalleFacturaDto: UpdateDetalleFacturaDto) {
-    // Verifica si existe antes de actualizar
+   
     await this.findOne(id);
 
     return await this.detalleFactura.update({
@@ -43,7 +43,7 @@ export class DetalleFacturaService extends PrismaClient implements OnModuleInit 
 
   
   async remove(id: number) {
-    // Verifica si existe antes de eliminar
+
     await this.findOne(id);
 
     return await this.detalleFactura.delete({
