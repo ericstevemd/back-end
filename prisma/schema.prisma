@@ -15,41 +15,128 @@ datasource db {
 }
 
 
-model cliente{
-  id  Int @id @default(autoincrement())
-  nombre String
-  Ruc String
-  correo String @unique
-  password String 
-  telefono String
-  existe Boolean? @default(true)
-  Facturas factura[]
+model cliente {
+  id                           Int       @id @default(autoincrement())
+  nombre                       String
+  ruc                          String
+  dv                           String?
+  graphicRepresentationName    String
+  tradeName                    String?
+  correo                       String    @unique
+  password                     String
+  telefono                     String
+  direccion                    String
+  company                      String?
+  existe                       Boolean   @default(true)
+  legalOrganizationId          Int
+  tributeId                    Int
+  municipalityId               Int
+  facturas                     Factura[]
+
+  legalOrganization            LegalOrganization @relation(fields: [legalOrganizationId], references: [id])
+  tribute                      Tribute           @relation(fields: [tributeId], references: [id])
+  municipality                 Municipality      @relation(fields: [municipalityId], references: [id])
+  createdAt                    DateTime  @default(now())
+  updatedAt                    DateTime  @updatedAt
 }
 
-model producto{
-  id Int  @id @default(autoincrement())
-  nombre String
-  precio Float
-  stock Int
-  detalles detalleFactura[]
-
-}
-model factura {
-  id        Int              @id @default(autoincrement())
-  fecha     DateTime         @default(now())
-  cliente   cliente          @relation(fields: [clienteId], references: [id])
-  clienteId Int
-  detalles  detalleFactura[]
-  total     Float
+model LegalOrganization {
+  id         Int       @id @default(autoincrement())
+  code       String
+  name       String
+  clientes   cliente[]
 }
 
-model detalleFactura {
-  id           Int      @id @default(autoincrement())
-  factura      factura  @relation(fields: [facturaId], references: [id])
-  facturaId    Int
-  producto     producto @relation(fields: [productoId], references: [id])
-  productoId   Int
-  cantidad     Int
-  precioUnitario Float
-  subtotal     Float
+model Tribute {
+  id         Int       @id @default(autoincrement())
+  code       String
+  name       String
+  clientes   cliente[]
+}
+
+model Municipality {
+  id         Int       @id @default(autoincrement())
+  code       String
+  name       String
+  clientes   cliente[]
+}
+
+model Producto {
+  id                Int      @id @default(autoincrement())
+  nombre            String
+  precio            Float
+  stock             Int
+  detallesFactura   DetalleFactura[]
+}
+
+model NumberingRange {
+  id                Int      @id @default(autoincrement())
+  prefix            String
+  from              Int
+  to                Int
+  resolutionNumber  String
+  startDate         DateTime
+  endDate           DateTime
+  months            Int
+  facturas          Factura[]
+}
+
+model Factura {
+  id                Int                @id @default(autoincrement())
+  documentCode      String
+  documentName      String
+  number            String
+  referenceCode     String
+  status            Int
+  sendEmail         Boolean
+  qr                String
+  cufe              String
+  validated         DateTime
+  discountRate      Float
+  discount          Float
+  grossValue        Float
+  taxableAmount     Float
+  taxAmount         Float
+  total             Float
+  fecha             DateTime           @default(now())
+  
+  clienteId         Int
+  companyId         Int
+  numberingRangeId  Int
+
+  cliente           cliente            @relation(fields: [clienteId], references: [id])
+  company           Company             @relation(fields: [companyId], references: [id])
+  numberingRange    NumberingRange      @relation(fields: [numberingRangeId], references: [id])
+  
+  detalles          DetalleFactura[]
+}
+
+model DetalleFactura {
+  id               Int       @id @default(autoincrement())
+  facturaId        Int
+  productoId       Int
+  cantidad         Int
+  precioUnitario   Float
+  subtotal         Float
+
+  factura          Factura   @relation(fields: [facturaId], references: [id])
+  producto         Producto  @relation(fields: [productoId], references: [id])
+}
+
+model Company {
+  id                          Int       @id @default(autoincrement())
+  urlLogo                     String
+  nit                         String
+  dv                          String
+  companyName                 String
+  name                        String
+  graphicRepresentationName   String
+  registrationCode            String
+  economicActivity            String
+  phone                       String
+  email                       String
+  direccion                   String
+  municipality                String
+  
+  facturas                    Factura[]
 }

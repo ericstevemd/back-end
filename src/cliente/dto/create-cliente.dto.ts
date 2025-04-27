@@ -1,19 +1,60 @@
-import { IsEmail, IsNotEmpty, IsString } from "class-validator"
+import { IsEmail, IsNotEmpty, IsOptional, IsString, IsBoolean, IsNumber } from 'class-validator';
 
 export class CreateClienteDto {
 
-@IsString()
-@IsNotEmpty()
-  nombre:string
   @IsString()
-  Ruc:string
+  @IsNotEmpty()
+  nombre: string;
+
+  @IsString()
+  @IsNotEmpty()
+  ruc: string;
+
+  @IsString()
+  @IsOptional()
+  dv?: string;
+
+  @IsString()
+  @IsNotEmpty()
+  graphicRepresentationName: string;
+
+  @IsString()
+  @IsOptional()
+  tradeName?: string;
+
   @IsEmail()
   @IsNotEmpty()
-  correo:string 
+  correo: string;
+
   @IsString()
   @IsNotEmpty()
-  password :string
+  password: string;
+
   @IsString()
-  telefono:string
-  existe?: boolean; 
+  @IsNotEmpty()
+  telefono: string;
+
+  @IsString()
+  @IsNotEmpty()
+  direccion: string;
+
+  @IsString()
+  @IsOptional()
+  company?: string;
+
+  @IsBoolean()
+  @IsOptional()
+  existe?: boolean;
+
+  @IsNumber()
+  @IsNotEmpty()
+  legalOrganizationId: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  tributeId: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  municipalityId: number;
 }

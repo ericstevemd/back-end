@@ -120,11 +120,39 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 exports.Prisma.ClienteScalarFieldEnum = {
   id: 'id',
   nombre: 'nombre',
-  Ruc: 'Ruc',
+  ruc: 'ruc',
+  dv: 'dv',
+  graphicRepresentationName: 'graphicRepresentationName',
+  tradeName: 'tradeName',
   correo: 'correo',
   password: 'password',
   telefono: 'telefono',
-  existe: 'existe'
+  direccion: 'direccion',
+  company: 'company',
+  existe: 'existe',
+  legalOrganizationId: 'legalOrganizationId',
+  tributeId: 'tributeId',
+  municipalityId: 'municipalityId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.LegalOrganizationScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+};
+
+exports.Prisma.TributeScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
+};
+
+exports.Prisma.MunicipalityScalarFieldEnum = {
+  id: 'id',
+  code: 'code',
+  name: 'name'
 };
 
 exports.Prisma.ProductoScalarFieldEnum = {
@@ -134,11 +162,38 @@ exports.Prisma.ProductoScalarFieldEnum = {
   stock: 'stock'
 };
 
+exports.Prisma.NumberingRangeScalarFieldEnum = {
+  id: 'id',
+  prefix: 'prefix',
+  from: 'from',
+  to: 'to',
+  resolutionNumber: 'resolutionNumber',
+  startDate: 'startDate',
+  endDate: 'endDate',
+  months: 'months'
+};
+
 exports.Prisma.FacturaScalarFieldEnum = {
   id: 'id',
+  documentCode: 'documentCode',
+  documentName: 'documentName',
+  number: 'number',
+  referenceCode: 'referenceCode',
+  status: 'status',
+  sendEmail: 'sendEmail',
+  qr: 'qr',
+  cufe: 'cufe',
+  validated: 'validated',
+  discountRate: 'discountRate',
+  discount: 'discount',
+  grossValue: 'grossValue',
+  taxableAmount: 'taxableAmount',
+  taxAmount: 'taxAmount',
+  total: 'total',
   fecha: 'fecha',
   clienteId: 'clienteId',
-  total: 'total'
+  companyId: 'companyId',
+  numberingRangeId: 'numberingRangeId'
 };
 
 exports.Prisma.DetalleFacturaScalarFieldEnum = {
@@ -148,6 +203,22 @@ exports.Prisma.DetalleFacturaScalarFieldEnum = {
   cantidad: 'cantidad',
   precioUnitario: 'precioUnitario',
   subtotal: 'subtotal'
+};
+
+exports.Prisma.CompanyScalarFieldEnum = {
+  id: 'id',
+  urlLogo: 'urlLogo',
+  nit: 'nit',
+  dv: 'dv',
+  companyName: 'companyName',
+  name: 'name',
+  graphicRepresentationName: 'graphicRepresentationName',
+  registrationCode: 'registrationCode',
+  economicActivity: 'economicActivity',
+  phone: 'phone',
+  email: 'email',
+  direccion: 'direccion',
+  municipality: 'municipality'
 };
 
 exports.Prisma.SortOrder = {
@@ -167,10 +238,15 @@ exports.Prisma.NullsOrder = {
 
 
 exports.Prisma.ModelName = {
-  cliente: 'cliente',
-  producto: 'producto',
-  factura: 'factura',
-  detalleFactura: 'detalleFactura'
+  Cliente: 'Cliente',
+  LegalOrganization: 'LegalOrganization',
+  Tribute: 'Tribute',
+  Municipality: 'Municipality',
+  Producto: 'Producto',
+  NumberingRange: 'NumberingRange',
+  Factura: 'Factura',
+  DetalleFactura: 'DetalleFactura',
+  Company: 'Company'
 };
 
 /**
